@@ -70,7 +70,7 @@
             <li><a href="#hero" class="active">Início<br></a></li>
             <li><a href="#about">Sobre</a></li>
             <li><a href="#services">Serviços</a></li>
-            <li><a href="#portfolio">Locais de Doação</a></li>
+            <li><a href="duvidasfrequentes.html">Dúvidas Frequentes</a></li>
             <li><a href="#team">Equipe</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li class="dropdown"><a href="#"><span>Informações</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -116,39 +116,53 @@
       <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
         <div class="container position-relative">
           <div class="row gy-4 mt-5">
-
-            <div class="col-xl-3 col-md-6">
+      
+            <div class="col-xl-2 col-md-4">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-heart-pulse"></i></div>
                 <h4 class="title"><a href="" class="stretched-link">Doação de Sangue</a></h4>
               </div>
-            </div><!--End Icon Box -->
+            </div><!-- End Icon Box -->
 
-            <div class="col-xl-3 col-md-6">
+            <div class="col-xl-2 col-md-4">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-lightbulb"></i></div>
+                <h4 class="title"><a href="" class="stretched-link">Mitos e Medos</a></h4>
+              </div>
+            </div><!-- End Icon Box -->
+      
+            <div class="col-xl-2 col-md-4">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-hospital"></i></div>
                 <h4 class="title"><a href="" class="stretched-link">Locais de Doação</a></h4>
               </div>
-            </div><!--End Icon Box -->
-
-            <div class="col-xl-3 col-md-6">
+            </div><!-- End Icon Box -->
+      
+            <div class="col-xl-2 col-md-4">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-question-circle"></i></div>
-                <h4 class="title"><a href="" class="stretched-link">Mitos e Medos</a></h4>
+                <h4 class="title"><a href="" class="stretched-link">Tipos Sanguíneos</a></h4>
               </div>
-            </div><!--End Icon Box -->
-
-            <div class="col-xl-3 col-md-6">
+            </div><!-- End Icon Box -->
+      
+            <div class="col-xl-2 col-md-4">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-info-circle"></i></div>
-                <h4 class="title"><a href="" class="stretched-link">Informações</a></h4>
+                <h4 class="title"><a href="" class="stretched-link">Campanhas Atuais e Alertas</a></h4>
               </div>
-            </div><!--End Icon Box -->
-
+            </div><!-- End Icon Box -->
+      
+            <!-- Novo Icon Box -->
+            <div class="col-xl-2 col-md-4">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-people"></i></div>
+                <h4 class="title"><a href="" class="stretched-link">Quero Ajudar</a></h4>
+              </div>
+            </div><!-- End Icon Box -->
+      
           </div>
         </div>
       </div>
-
     </section><!-- /Hero Section -->
 
     <!-- About Section -->
@@ -195,6 +209,61 @@
       </div>
 
     </section><!-- /About Section -->
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients section">
+
+      <div class="container">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
 
     <!-- Stats Section -->
     <section id="stats" class="stats section">
@@ -504,7 +573,15 @@
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-            
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <div class="portfolio-content h-100">
+                <a href="assets/img/portfolio/app-1.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt=""></a>
+                <div class="portfolio-info">
+                  <h4><a href="portfolio-details.html" title="More Details">App 1</a></h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
               <div class="portfolio-content h-100">
