@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Campanhas Atuais e Alertas - Bancos de Vida</title>
+  <meta name="description" content="Confira as campanhas atuais e alertas de doação de sangue">
+  <meta name="keywords" content="doação de sangue, campanhas, alertas, junho vermelho, emergência">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    .alert-card {
+      border: none;
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+    
+    .alert-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    
+    .alert-card.emergency {
+      border-left: 5px solid #dc3545;
+    }
+    
+    .alert-card.campaign {
+      border-left: 5px solid #198754;
+    }
+    
+    .alert-card.partnership {
+      border-left: 5px solid #0d6efd;
+    }
+
+    .alert-header {
+      padding: 1.5rem;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .alert-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+      z-index: 1;
+    }
+
+    .alert-header i {
+      font-size: 2rem;
+      z-index: 2;
+    }
+
+    .alert-header h2 {
+      margin: 0;
+      z-index: 2;
+      font-size: 1.75rem;
+    }
+
+    .emergency .alert-header {
+      background: linear-gradient(45deg, #dc3545 0%, #e35d6a 100%);
+    }
+
+    .campaign .alert-header {
+      background: linear-gradient(45deg, #198754 0%, #27ae60 100%);
+    }
+
+    .partnership .alert-header {
+      background: linear-gradient(45deg, #0d6efd 0%, #3498db 100%);
+    }
+
+    .alert-content {
+      padding: 2rem;
+      background-color: white;
+    }
+
+    .partnership-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 1rem;
+      background-color: #f8f9fa;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .partnership-item:hover {
+      transform: translateX(10px);
+      background-color: #e9ecef;
+      border-color: rgba(13, 110, 253, 0.2);
+    }
+
+    .partnership-icon {
+      font-size: 2rem;
+      color: #0d6efd;
+      background: rgba(13, 110, 253, 0.1);
+      padding: 1rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 4rem;
+      height: 4rem;
+    }
+
+    .blood-type {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #dc3545;
+      background: linear-gradient(45deg, rgba(220, 53, 69, 0.1) 0%, rgba(220, 53, 69, 0.2) 100%);
+      padding: 0.75rem 1.5rem;
+      border-radius: 1rem;
+      display: inline-block;
+      margin: 1rem 0;
+      box-shadow: 0 2px 4px rgba(220, 53, 69, 0.1);
+    }
+
+    .campaign-highlight {
+      background: linear-gradient(120deg, rgba(25, 135, 84, 0.1) 0%, rgba(25, 135, 84, 0.2) 100%);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      color: #198754;
+      display: inline-block;
+      margin: 0.5rem 0;
+      box-shadow: 0 2px 4px rgba(25, 135, 84, 0.1);
+    }
+
+    .btn-action {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .campaign-message {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(45deg, rgba(220, 53, 69, 0.05) 0%, rgba(220, 53, 69, 0.1) 100%);
+    }
+
+    .campaign-message h3 {
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .campaign-message i {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+
+<body class="blog-page">
+
+  <header id="header" class="header fixed-top">
+    <div class="topbar d-flex align-items-center">
+      <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center">
+        </div>
+        <div class="social-links d-none d-md-flex align-items-center">
+          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="branding d-flex align-items-cente">
+      <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">Bancos De Vida</h1>
+          <span>.</span>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html">Início<br></a></li>
+            <li><a href="index.html#about">Sobre</a></li>
+            <li><a href="duvidasfrequentes.html">Dúvidas Frequentes</a></li>
+            <li class="dropdown"><a href="#"><span>Informações</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul>
+                <li><a href="doacao-sangue.html">Requisitos para Doação</a></li>
+                <li><a href="tipos-sanguineos.html">Tipos de Sangue</a></li>
+                <li><a href="doacao-sangue.html">Processo de Doação</a></li>
+                <li><a href="#">Benefícios</a></li>
+              </ul>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ======= Page Title ======= -->
+    <div class="page-title">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Campanhas Atuais e Alertas</h1>
+              <p class="mb-0">Fique por dentro das campanhas em andamento e necessidades urgentes de doação.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Início</a></li>
+            <li class="current">Campanhas e Alertas</li>
+          </ol>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ======= Content Section ======= -->
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            
+            <!-- Alerta de Emergência -->
+            <div class="alert-card emergency" data-aos="fade-up">
+              <div class="alert-header">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <h2>Alerta de Emergência</h2>
+              </div>
+              <div class="alert-content">
+                <p class="lead mb-4">Precisamos urgentemente de sangue tipo <span class="blood-type">O-</span></p>
+                <p class="mb-4">Doe no hemocentro mais próximo e ajude a salvar vidas!</p>
+                <a href="locais-doacao.html" class="btn btn-danger btn-action">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  Encontrar hemocentro mais próximo
+                </a>
+              </div>
+            </div>
+
+            <!-- Campanha do Mês -->
+            <div class="alert-card campaign" data-aos="fade-up" data-aos-delay="100">
+              <div class="alert-header">
+                <i class="bi bi-calendar-event-fill"></i>
+                <h2>Campanha do Mês: Junho Vermelho</h2>
+              </div>
+              <div class="alert-content">
+                <p class="lead mb-3">Junho é o mês da conscientização sobre a importância da doação de sangue.</p>
+                <p class="mb-4">Participe da campanha <span class="campaign-highlight">Junho Vermelho</span> e faça sua parte!</p>
+                <div class="campaign-message">
+                  <h3 class="text-danger">
+                    <i class="bi bi-droplet-fill"></i>
+                    Doe sangue, compartilhe vida
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Parcerias e Ações Locais -->
+            <div class="alert-card partnership" data-aos="fade-up" data-aos-delay="200">
+              <div class="alert-header">
+                <i class="bi bi-people-fill"></i>
+                <h2>Parcerias e Ações Locais</h2>
+              </div>
+              <div class="alert-content">
+                <div class="partnership-item">
+                  <i class="bi bi-calendar-check partnership-icon"></i>
+                  <div>
+                    <h4 class="mb-2">Parceria com o Hemonúcleo São Paulo</h4>
+                    <p class="mb-0">Mutirão especial de doação no dia 15/06</p>
+                  </div>
+                </div>
+
+                <div class="partnership-item">
+                  <i class="bi bi-cup-hot partnership-icon"></i>
+                  <div>
+                    <h4 class="mb-2">Café solidário para doadores</h4>
+                    <p class="mb-0">No Hemocentro Vila Mariana até 30/06</p>
+                  </div>
+                </div>
+
+                <div class="partnership-item">
+                  <i class="bi bi-percent partnership-icon"></i>
+                  <div>
+                    <h4 class="mb-2">Descontos em farmácias parceiras</h4>
+                    <p class="mb-0">Para quem apresentar comprovante de doação</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Bancos De Vida</span>
+          </a>
+          <p>Seja um doador de sangue e salve vidas. Encontre locais de doação, saiba como doar e descubra a importância da doação de sangue.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Links Úteis</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">Sobre nós</a></li>
+            <li><a href="index.html#services">Serviços</a></li>
+            <li><a href="#">Termos de serviço</a></li>
+            <li><a href="#">Política de privacidade</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contato</h4>
+          <p>Entre em contato conosco</p>
+          <p class="mt-4"><strong>Telefone:</strong> <span>0800 000 0000</span></p>
+          <p><strong>Email:</strong> <span>contato@bancosdevida.com.br</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Bancos de Vida</strong> <span>Todos os direitos reservados</span></p>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html> 

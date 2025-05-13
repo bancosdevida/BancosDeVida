@@ -2849,3 +2849,31 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
 }
+
+/*--------------------------------------------------------------
+# Map Section
+--------------------------------------------------------------*/
+.map-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: 0 15px;
+}
+
+.map-info-window {
+  padding: 15px;
+  max-width: 250px;
+}
+
+.map-info-window h4 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    height: 400px !important;
+    margin: 0 10px;
+  }
+}
