@@ -312,6 +312,7 @@
       let showFactAt = 100;
       let obstacleInterval = 300;
       let obstacleTypeIndex = 0;
+      let lastSpeedIncrease = 0;
       const obstacleTypes = ['seringa', 'muro', 'bacteria'];
       let generateDoubleObstacle = false;
 
@@ -499,9 +500,11 @@
           showFactAt += 200;
           setTimeout(()=>{factBox.style.display='none';}, 4000);
         }
-        // aumento gradual de velocidade
-        if (frame % 100 === 0) {
-          speed += 0.05;
+        // aumento gradual de velocidade a cada 700 pontos
+        if (score - lastSpeedIncrease >= 700) {
+          speed += 0.3;
+          lastSpeedIncrease = score;
+          console.log('Velocidade aumentada para:', speed); // Debug
         }
         frame++;
         requestAnimationFrame(gameLoop);
