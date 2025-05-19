@@ -354,100 +354,175 @@
 </section><!-- /Services Section -->
 
 <script>
-function initMap() {
-  // Coordenadas de Diadema (centro do mapa)
-  const diadema = { lat: -23.6815315, lng: -46.6209569 };
-  
-  // Criar o mapa
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 13,
-    center: diadema,
-    styles: [
+  function initMap() {
+    // Coordenadas de São Paulo (centro do mapa)
+    const saoPaulo = { lat: -23.5505, lng: -46.6333 };
+    
+    // Criar o mapa
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 10,
+      center: saoPaulo,
+      styles: [
+        {
+          "featureType": "poi",
+          "stylers": [
+            { "visibility": "off" }
+          ]
+        }
+      ]
+    });
+
+    // Criar bounds para ajustar o zoom
+    const bounds = new google.maps.LatLngBounds();
+    
+    // Locais de doação de sangue (coordenadas aproximadas)
+    const donationSites = [
       {
-        "featureType": "poi",
-        "stylers": [
-          { "visibility": "off" }
-        ]
+        name: "Hemocentro de Diadema",
+        location: { lat: -23.6865, lng: -46.6234 },
+        address: "Rua Graciosa, 148 - Centro, Diadema",
+        phone: "(11) 4056-3366"
+      },
+      {
+        name: "Hospital Serraria",
+        location: { lat: -23.6792, lng: -46.6078 },
+        address: "Av. Antonio Piranga, 828 - Serraria, Diadema",
+        phone: "(11) 4075-7000"
+      },
+      {
+        name: "Hospital Municipal de São Bernardo do Campo",
+        location: { lat: -23.6948, lng: -46.5654 },
+        address: "Rua Francisco Visentainer, 211 - Bairro Assunção, São Bernardo do Campo",
+        phone: "(11) 4330-6000"
+      },
+      {
+        name: "Fundação Pró-Sangue - Posto Clínicas",
+        location: { lat: -23.5575, lng: -46.6736 },
+        address: "Av. Dr. Enéas Carvalho de Aguiar, 155 – 1º andar – Cerqueira César – São Paulo/SP",
+        phone: "(11) 4573-7800"
+      },
+      {
+        name: "Fundação Pró-Sangue - Posto Dante Pazzanese",
+        location: { lat: -23.5864, lng: -46.6678 },
+        address: "Av. Dr. Dante Pazzanese, 500 – Ibirapuera – São Paulo/SP",
+        phone: "(11) 4573-7800"
+      },
+      {
+        name: "Fundação Pró-Sangue - Posto Mandaqui",
+        location: { lat: -23.4897, lng: -46.6378 },
+        address: "Rua Voluntários da Pátria, 4227 – Mandaqui – São Paulo/SP",
+        phone: "(11) 4573-7800"
+      },
+      {
+        name: "Fundação Pró-Sangue - Posto Regional de Osasco",
+        location: { lat: -23.5320, lng: -46.7920 },
+        address: "Rua Ari Barroso, 355 – Presidente Altino – Osasco/SP",
+        phone: "(11) 4573-7800"
+      },
+      {
+        name: "Fundação Pró-Sangue - Posto Barueri",
+        location: { lat: -23.5114, lng: -46.8761 },
+        address: "Rua Guilhermina Carril Loureiro, 144 – Centro – Barueri/SP",
+        phone: "(11) 4573-7800"
+      },
+      {
+        name: "Hospital Municipal Alípio Corrêa Netto",
+        location: { lat: -23.4897, lng: -46.4800 },
+        address: "Alameda Rodrigo de Brum, 1989 – Ermelino Matarazzo – São Paulo/SP",
+        phone: "(11) 2545-4652"
+      },
+      {
+        name: "Hospital Santa Marcelina – Itaquera",
+        location: { lat: -23.5417, lng: -46.4689 },
+        address: "Rua Harry Danhenberg, 473 – Vila Carmosina – São Paulo/SP",
+        phone: "(11) 2523-0546 / (11) 2070-6081"
+      },
+      {
+        name: "Santa Casa de Misericórdia - Hemocentro",
+        location: { lat: -23.5475, lng: -46.6321 },
+        address: "Rua Marquês de Itu, 579 – Vila Buarque – São Paulo/SP",
+        phone: "(11) 2176-7155"
+      },
+      {
+        name: "Hospital São Luiz Gonzaga",
+        location: { lat: -23.4897, lng: -46.6378 },
+        address: "Rua Michel Ouchana, 94 – Jaçanã – São Paulo/SP",
+        phone: "(11) 3466-1000"
+      },
+      {
+        name: "Hospital Santa Catarina",
+        location: { lat: -23.5637, lng: -46.6544 },
+        address: "Av. Paulista, 200 – 4º andar, Bloco F – Bela Vista – São Paulo/SP",
+        phone: "(11) 3016-4111"
+      },
+      {
+        name: "Hospital São Camilo – Unidade Ipiranga",
+        location: { lat: -23.5897, lng: -46.6097 },
+        address: "Rua Tavares Bastos, 573 – Ipiranga – São Paulo/SP",
+        phone: "(11) 3385-8000"
+      },
+      {
+        name: "Hospital Estadual Mário Covas",
+        location: { lat: -23.6815, lng: -46.5315 },
+        address: "Rua Dr. Henrique Calderazzo, 321 – Santo André/SP",
+        phone: "(11) 2829-5162 / (11) 4436-0506"
       }
-    ]
-  });
-  
-  // Locais de doação de sangue (coordenadas aproximadas)
-  const donationSites = [
-    {
-      name: "Hemocentro de Diadema",
-      location: { lat: -23.6865, lng: -46.6234 },
-      address: "Rua Graciosa, 148 - Centro, Diadema",
-      phone: "(11) 4056-3366"
-    },
-    {
-      name: "Hospital Serraria",
-      location: { lat: -23.6792, lng: -46.6078 },
-      address: "Av. Antonio Piranga, 828 - Serraria, Diadema",
-      phone: "(11) 4075-7000"
-    },
-    {
-      name: "Hospital Municipal de São Bernardo do Campo",
-      location: { lat: -23.6948, lng: -46.5654 },
-      address: "Rua Francisco Visentainer, 211 - Bairro Assunção, São Bernardo do Campo",
-      phone: "(11) 4330-6000"
-    },
-    {
-      name: "Fundação Pró-Sangue - Hemocentro de São Paulo",
-      location: { lat: -23.6631, lng: -46.6238 },
-      address: "Av. Dr. Dante Pazzanese, 500 - Vila Mariana, São Paulo",
-      phone: "(11) 5084-3000"
-    },
-    {
-      name: "Hemocentro da Santa Casa de São Paulo",
-      location: { lat: -23.5475, lng: -46.6321 },
-      address: "Rua Marquês de Itu, 579 - Vila Buarque, São Paulo",
-      phone: "(11) 2176-7000"
-    }
-  ];
-  
-  // Adicionar marcadores para cada local
-  donationSites.forEach(site => {
-    const marker = new google.maps.Marker({
-      position: site.location,
-      map: map,
-      title: site.name,
-      icon: {
-        url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
-      }
-    });
+    ];
     
-    // Criar janela de informações
-    const infoWindow = new google.maps.InfoWindow({
-      content: `
-        <div style="padding: 10px;">
-          <h3 style="margin: 0 0 5px 0; color: #d32f2f;">${site.name}</h3>
-          <p style="margin: 0 0 5px 0;">${site.address}</p>
-          <p style="margin: 0;">Telefone: ${site.phone}</p>
-        </div>
-      `
+    // Adicionar marcadores para cada local
+    donationSites.forEach(site => {
+      const marker = new google.maps.Marker({
+        position: site.location,
+        map: map,
+        title: site.name,
+        icon: {
+          url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+        }
+      });
+      
+      // Adicionar posição aos bounds
+      bounds.extend(site.location);
+      
+      // Criar janela de informações
+      const infoWindow = new google.maps.InfoWindow({
+        content: `
+          <div style="padding: 10px;">
+            <h3 style="margin: 0 0 5px 0; color: #d32f2f;">${site.name}</h3>
+            <p style="margin: 0 0 5px 0;">${site.address}</p>
+            <p style="margin: 0;">Telefone: ${site.phone}</p>
+          </div>
+        `
+      });
+      
+      // Adicionar evento de clique ao marcador
+      marker.addListener("click", () => {
+        infoWindow.open(map, marker);
+      });
     });
+
+    // Ajustar o zoom para mostrar todos os marcadores
+    map.fitBounds(bounds);
     
-    // Adicionar evento de clique ao marcador
-    marker.addListener("click", () => {
-      infoWindow.open(map, marker);
+    // Adicionar um pequeno padding aos bounds
+    const listener = google.maps.event.addListener(map, "idle", function () {
+      if (map.getZoom() > 12) map.setZoom(12);
+      google.maps.event.removeListener(listener);
     });
-  });
-}
-
-// Carregar a API do Google Maps de forma assíncrona
-function loadGoogleMaps() {
+  }
   
-  const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCZtAJeb6vH8SXjd4kaxXNl7p6Ev6K_NZg&callback=initMap`;
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
-}
-
-// Carregar o mapa quando a página estiver pronta
-window.addEventListener('load', loadGoogleMaps);
-</script>
+  // Carregar a API do Google Maps de forma assíncrona
+  function loadGoogleMaps() {
+    
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCZtAJeb6vH8SXjd4kaxXNl7p6Ev6K_NZg&callback=initMap`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+  
+  // Carregar o mapa quando a página estiver pronta
+  window.addEventListener('load', loadGoogleMaps);
+  </script>
 
 
     <!-- Team Section -->
